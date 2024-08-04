@@ -1,0 +1,51 @@
+data:
+    dataset: "Cifar100"
+    image_size: 32
+    image_size_expansion: 224
+    channels: 3
+    num_workers: 16
+    data_dir: "/home/zzm/桌面/project/WeatherDiffusion-main"
+    conditional: True
+
+model:
+    in_channels: 3
+    out_ch: 3
+    ch: 128
+    ch_mult: [1, 2, 3, 4]
+    num_res_blocks: 2
+    attn_resolutions: [16, ]
+    dropout: 0.0
+    ema_rate: 0.999
+    ema: True
+    resamp_with_conv: True
+
+diffusion:
+    beta_schedule: linear
+    beta_start: 0.0001
+    beta_end: 0.02
+    num_diffusion_timesteps: 1000
+
+training:
+    patch_n: 4
+    patch_size: 64
+    batch_size: 16
+    n_epochs: 1775
+    n_iters: 2000000
+    snapshot_freq: 10000
+    validation_freq: 1000
+
+sampling:
+    patch_n: 4
+    patch_size: 2
+    patch_size_ex: 14
+    mask_size: 24
+    batch_size: 256
+    last_only: True
+    adv: False
+
+optim:
+    weight_decay: 0.000
+    optimizer: "Adam"
+    lr: 0.00002
+    amsgrad: False
+    eps: 0.00000001
